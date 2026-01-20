@@ -25,21 +25,27 @@ namespace titkositas
                         {
                             Console.Write("Kérem a titkosítandó szöveget! :");
                             sor = Console.ReadLine();
-                            sorok.Add(sor);
+                        if(sor!=""){ sorok.Add(Titkositott(sor,eltolas)); }
                         }
                         while (sor != "");
-
-                        break;
+                        FajlbaIr("kodolt.txt", sorok);
+                    break;
                     case ConsoleKey.F2:
                         Console.Write("Kérem a kódolt fájl nevét! :");
                         fajlNev = Console.ReadLine();
-                        Console.WriteLine(Visszafejt(FajlbolOlvas(fajlNev)));
-                        break;
+                    List<string> beolvasottSorok = FajlbolOlvas(fajlNev);
+                    foreach (string s in beolvasottSorok)
+                    {
+                        Console.WriteLine(Visszafejt(s));
+                    }
+                    Console.WriteLine($"A fájl{beolvasottSorok.Count()} sorból áll");
+                    Console.ReadKey();
+                    break;
                     default:
                         Console.WriteLine("The end!");
                         return;
                 }
-                foreach (string s in sorok) { FajlbaIr("kodolt.txt", Titkositott(s, eltolas)); }
+              
             }
 
 
@@ -51,9 +57,7 @@ namespace titkositas
                 while (!sr.EndOfStream)
                 {
                     eltolas = int.Parse(sr.ReadLine());  //Ezt is vizsgálni kellene!
-                    String sor = sr.ReadLine();
-
-
+                    olvasott.Add( sr.ReadLine());
 
                 }
                 sr.Close();
@@ -61,16 +65,17 @@ namespace titkositas
             }
 
 
-            /// <summary>
-            /// A megadott állományba írja az átalakított szöveget
-            /// </summary>
-            /// <param name="fileName">Elérési útvonal és a fájl neve</param>
-            /// <param name="textLine">A fájlba írandó szöveg</param>
-            private static void FajlbaIr(string fileName, string textLine)  //módosítani a paramétert pld string listára
-            {
-                StreamWriter sw = new StreamWriter(fileName);
-                sw.WriteLine(eltolas);
-                sw.WriteLine(textLine); //Át kell írni
+        /// <summary>
+        /// A megadott állományba írja az átalakított szöveget
+        /// </summary>
+        /// <param name="fileName">Elérési útvonal és a fájl neve</param>
+        /// <param name="textLine">A fájlba írandó szöveg</param>
+        private static void FajlbaIr(string fileName, List<string> textLine)  //módosítani a paramétert pld string listára
+        {
+            StreamWriter sw = new StreamWriter(fileName);
+            sw.WriteLine(eltolas);
+            foreach (string sor in textLine) { 
+            sw.WriteLine(sor); }
                 sw.Close();
             }
 

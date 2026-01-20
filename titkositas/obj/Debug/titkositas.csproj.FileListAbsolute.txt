@@ -1,0 +1,8 @@
+C:\Users\User\Documents\GitHub\titkositas\titkositas\bin\Debug\titkositas.exe.config
+C:\Users\User\Documents\GitHub\titkositas\titkositas\bin\Debug\titkositas.exe
+C:\Users\User\Documents\GitHub\titkositas\titkositas\bin\Debug\titkositas.pdb
+C:\Users\User\Documents\GitHub\titkositas\titkositas\obj\Debug\titkositas.csproj.AssemblyReference.cache
+C:\Users\User\Documents\GitHub\titkositas\titkositas\obj\Debug\titkositas.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\GitHub\titkositas\titkositas\obj\Debug\titkositas.exe
+C:\Users\User\Documents\GitHub\titkositas\titkositas\obj\Debug\titkositas.pdb
+C:\Users\User\Documents\GitHub\titkositas\titkositas\obj\Debug\titkositas.exe.config
