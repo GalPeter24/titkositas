@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -37,9 +38,11 @@ namespace titkositas
                     foreach (string s in beolvasottSorok)
                     {
                         Console.WriteLine(Visszafejt(s));
+           
                     }
                     Console.WriteLine($"A fájl{beolvasottSorok.Count()} sorból áll");
-                    Console.WriteLine($"A leghosszabb sor ez volt: "+ Leghosszabb(beolvasottSorok));
+                    Console.WriteLine($"A leghosszabb sor ez volt: " + Leghosszabb(beolvasottSorok));
+                    Console.WriteLine($"A legtőbb szóközt tartalmazó sor: "+legtobbSzokoz(beolvasottSorok));
                     Console.ReadKey();
                     break;
                 default:
@@ -55,9 +58,13 @@ namespace titkositas
             StreamReader sr = new StreamReader(fajlNev);
 
             List<string> olvasott = new List<string>();
+            if (!sr.EndOfStream)
+            {
+                eltolas = int.Parse(sr.ReadLine());
+            }
             while (!sr.EndOfStream)
             {
-                eltolas = int.Parse(sr.ReadLine());  //Ezt is vizsgálni kellene!
+         
                 olvasott.Add(sr.ReadLine());
 
             }
@@ -71,7 +78,7 @@ namespace titkositas
         /// </summary>
         /// <param name="fileName">Elérési útvonal és a fájl neve</param>
         /// <param name="textLine">A fájlba írandó szöveg</param>
-        private static void FajlbaIr(string fileName, List<string> textLine)  //módosítani a paramétert pld string listára
+        private static void FajlbaIr(string fileName, List<string> textLine)  
         {
             StreamWriter sw = new StreamWriter(fileName);
             sw.WriteLine(eltolas);
@@ -133,6 +140,23 @@ namespace titkositas
                 }
             }
             return leghosszabb;
+        }
+
+
+        private static string legtobbSzokoz(List<string> sorok)
+        {
+            string legtobbSzokoztTartalmazo = "";
+            int maxSzokozokSzama = 0;
+            foreach (string s in sorok)
+            {
+                int szokozokSzama = s.Count(c => c == ' ');
+                if (szokozokSzama > maxSzokozokSzama)
+                {
+                    maxSzokozokSzama = szokozokSzama;
+                    legtobbSzokoztTartalmazo = s;
+                }
+            }
+            return legtobbSzokoztTartalmazo;
         }
     }
 }
