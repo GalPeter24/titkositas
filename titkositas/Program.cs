@@ -35,14 +35,18 @@ namespace titkositas
                     Console.Write("Kérem a kódolt fájl nevét! :");
                     fajlNev = Console.ReadLine();
                     List<string> beolvasottSorok = FajlbolOlvas(fajlNev);
+
+                    List<string> visszafejtettSorok = new List<string>();
                     foreach (string s in beolvasottSorok)
                     {
-                        Console.WriteLine(Visszafejt(s));
-           
+                        string dekolt = Visszafejt(s);
+                        visszafejtettSorok.Add(dekolt);
+                        Console.WriteLine(dekolt);
+
                     }
-                    Console.WriteLine($"A fájl{beolvasottSorok.Count()} sorból áll");
-                    Console.WriteLine($"A leghosszabb sor ez volt: " + Leghosszabb(beolvasottSorok));
-                    Console.WriteLine($"A legtőbb szóközt tartalmazó sor: "+legtobbSzokoz(beolvasottSorok));
+                    Console.WriteLine($"A fájl{visszafejtettSorok.Count()} sorból áll");
+                    Console.WriteLine($"A leghosszabb sor ez volt: " + Leghosszabb(visszafejtettSorok));
+                    Console.WriteLine($"A legtőbb szóközt tartalmazó sor: "+legtobbSzokoz(visszafejtettSorok));
                     Console.ReadKey();
                     break;
                 default:
